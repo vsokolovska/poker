@@ -13,7 +13,7 @@
 <body class="container mt-4">
 <?php
 session_start();
-echo '<a href="clear.php" class="btn btn-danger mb-3">Скинути сессію</a>';
+echo '<a href="?new_game=1" class="btn btn-danger mb-3">Нова гра</a>';
 $players = getPlayers();
 if (isset($_POST['done'])) {
     handleDoneForm($players);
@@ -105,7 +105,7 @@ function getScoreTable($players)
 
 function getPlayers()
 {
-    if (isset($_SESSION['players'])) {
+    if (isset($_SESSION['players']) && !$_GET['new_game']){
         return $_SESSION['players'];
     }
     if (isset($_GET['players'])) {
